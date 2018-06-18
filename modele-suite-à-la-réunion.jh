@@ -1,0 +1,198 @@
+relationship OneToMany {Collaborateur to Nationalite}
+relationship OneToMany {Collaborateur to IdentificationsAdministratives}
+relationship OneToOne {Collaborateur to SituationFamilialeLegale}
+relationship OneToMany {Collaborateur to PersonnesACharge}
+relationship OneToOne {ContratDeTravail to AdressePersonnelle}
+relationship OneToOne {ContratDeTravail to ContactsProfessionnels}
+relationship OneToOne {Collaborateur to DateDEntreeGroupeSg}
+relationship OneToMany {Collaborateur to ContratDeTravail}
+relationship OneToOne {ContratDeTravail to RegimeDeTravail}
+relationship OneToOne {ContratDeTravail to Teletravail}
+relationship OneToMany {Teletravail to JourTeletravail}
+relationship OneToOne {ContratDeTravail to SocieteJuridiqueDAccueilGroupe}
+relationship ManyToOne {ContratDeTravail to SocieteJuridiqueDOrigineGroupe}
+relationship ManyToOne {SocieteJuridiqueDAccueilGroupe to PaysDeTravailGroupe}
+relationship ManyToOne {SocieteJuridiqueDOrigineGroupe to PaysDOrigineGroupe}
+relationship OneToOne {ContratDeTravail to ServiceDAffectationAdministratifLocal}
+relationship OneToOne {ContratDeTravail to ServiceDAffectationBudgetaireDuCollaborateur}
+relationship OneToOne {Emploi to Metier}
+relationship OneToOne {ContratDeTravail to Emploi}
+relationship OneToOne {ContratDeTravail to Poste}
+relationship OneToOne {ContratDeTravail to ConventionCollective}
+relationship OneToOne {ContratDeTravail to ClassificationLocale}
+relationship OneToOne {ContratDeTravail to ClassificationGroupe}
+relationship OneToOne {ContratDeTravail to TypeDePersonnel}
+relationship OneToMany {Collaborateur to CertificationDeLaPersonnePhysique}
+relationship OneToMany {Collaborateur to Competence}
+relationship OneToMany {Collaborateur to Diplme}
+relationship OneToOne {Collaborateur to NiveauDEtudes}
+relationship OneToMany {Collaborateur to ExperiencesProfessionnellesAnterieures}
+relationship OneToOne {Collaborateur to Langue}
+relationship OneToMany {Collaborateur to TestDeLangue}
+relationship OneToMany {Collaborateur {Collaborateur} to Nationalite}
+//aa
+relationship OneToMany {Collaborateur  to Nationalite{EffectDateRelation}}
+relationship OneToMany {Collaborateur  to IdentificationsAdministratives{EffectDateRelation}}
+relationship OneToMany {Collaborateur  to SituationFamilialeLegale{EffectDateRelation}}
+relationship OneToMany {Collaborateur  to PersonnesACharge{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to AdressePersonnelle{EffectDateRelation}}
+relationship OneToMany {Collaborateur  to ContratDeTravail{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to RegimeDeTravail{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to ServiceDAffectationAdministratifLocal{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to ServiceDAffectationBudgetaireDuCollaborateur{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to Emploi{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to Poste{EffectDateRelation}}
+relationship OneToMany {ContratDeTravail  to ClassificationLocale{EffectDateRelation}}
+
+
+entity Collaborateur{Igg Long,
+NomDeNaissanceAlphabetLatin String,
+NomDeNaissanceAlphabetDeNationalite String,
+NomUsuelAlphabetLatin String,
+NomUsuelAlphabetDeNationalite String,
+ComplementDuNomAlphabetLatin String,
+ComplementDuNomAlphabetDeNationalite String,
+PrenomAlphabetLatin String,
+PrenomAlphabetDeNationalite String,
+DateDeNaissance String,
+PaysDeNaissance String,
+DepartementDeNaissance String,
+GenreDeLaPersonnePhysique String,
+MatriculeLocalDuCollaborateur String,
+} entity Nationalite{DateDEffet String,
+CodePaysDeNationalite String,
+} entity IdentificationsAdministratives{DateDEffet Date,
+TypeDIdentification String,
+NumeroDIdentification String,
+DateDExpiration String,
+PaysDeDelivrance String,
+} entity SituationFamilialeLegale{DateDEffet String,
+Code String,
+Libelle String,
+} entity PersonnesACharge{NombreDePersonnesACharge Long,
+NomDeLaPersonneACharge String,
+PrenomDeLaPersonneACharge String,
+DateDEffet String,
+DateDeNaissance String,
+LienDeParente String,
+InformationSurLaCharge String,
+} entity AdressePersonnelle{ComplementRuePhysique1 String,
+ComplementRuePhysique2 String,
+AdressePhysque String,
+ComplementDistrbutionPhysique String,
+CodePostalPhysique String,
+VilleDeResidenceDuCollaborateur String,
+PaysDeResidence String,
+DateDEffet String,
+} entity ContactsProfessionnels{IdentifiantRtfe String,
+NumeroDeTelephoneProfessionnel String,
+NumeroMobileProfessionnel String,
+NumeroFaxProfessionnel String,
+CodeImmeubleCollaborateur String,
+ComplementRuePhysique1 String,
+ComplementRuePhysique2 String,
+AdressePhysique String,
+ComplementDistributionPhysique String,
+CodePostalPhysique String,
+VillePhysique String,
+CodePaysPhysique String,
+AdresseMailSg String,
+} 
+entity DateDEntreeGroupeSg{DateDEntreeGroupeSg String,
+} 
+entity ContratDeTravail{Igg Long,
+SirhDeGestion String,
+IndicateurHome_Host Long,
+SocieteJuridiqueDAccueilGroupe Long,
+PleDActiviteGroupe String,
+EntiteDeGestion String,
+TypeDeContratValeurGroupe String,
+StatutDEmploi String,
+TypeDeContratDeTravailValeurLocale String,
+LibelleTypeDeContratDeTravailValeurLocale String,
+TypeDeContratDeTravailValeurGroupe String,
+LibelleTypeDeContratDeTravailValeurGroupe String,
+DateDeFinDePeriodeDEssaiPrevisionnelle String,
+DateDEffet String,
+DateDeFinContrat String,
+} entity RegimeDeTravail{CodeRegimeDeTravail String,
+LibelleRegimeDeTravail String,
+DateDEffet String,
+ValeurEtp Long,
+} entity Teletravail{CodeTypeTeletravail String,
+LibelleTypeTeletravail String,
+DateDeDebut String,
+DateDeFin String,
+JourS String,
+} 
+
+entity SocieteJuridiqueDAccueilGroupe{CodeSociete Long,
+LibelleSociete String,
+DateDEntreeDansLaSocieteJuridiqueDAccueil String,
+DateDeSortieSocieteJuridiqueDAccueil String,
+CodeActionEntree String,
+CodeMotifEntree String,
+} 
+entity SocieteJuridiqueDOrigineGroupe{CodeSocieteJuridiqueDOrigineGroupe Long,
+LibelleSocieteJuridiqueDOrigineGroupe String,
+} entity PaysDeTravailGroupe{Affectationorganisationnelle String,
+} entity PaysDOrigineGroupe{Affectationorganisationnelle String,
+} entity ServiceDAffectationAdministratifLocal{CodeServiceDAffectationAdministratifLocal String,
+LibelleServiceDAffectationAdministratifLocal String,
+DateDEffet String,
+} entity ServiceDAffectationBudgetaireDuCollaborateur{Code String,
+Libelle String,
+DateDEffet String,
+} entity EntiteDeGestion{EntiteDeGestion String,
+} entity Metier{CodeMetier String,
+LibelleMetier String,
+} entity Emploi{CodeEmploiValeurGroupe String,
+LibelleEmploiValeurGroupe String,
+CodeEmploiValeurLocale String,
+LibelleEmploiValeurLocale String,
+DateDEffet String,
+CodeActionSortieEmploi String,
+CodeMotifSortieEmploi String,
+} entity Poste{CodePoste String,
+LibellePoste String,
+NbEffectifsDuPoste Long,
+NiveauxDuPoste String,
+IndicateurMif2 String,
+DateDEffet String,
+} entity ConventionCollective{CodeConventionCollective String,
+TypeConventionCollective String,
+} entity ClassificationLocale{CodeClassificationLocale String,
+LibelleClassificationLocale String,
+DateDEffet String,
+} entity ClassificationGroupe{CodeClassificationGroupe String,
+LibelleClassificationGroupe String,
+} entity TypeDePersonnel{TypeDePersonnelValeurLocal String,
+LibelleTypeDePersonnelValeurLocal String,
+CodeTypeDePersonnelValeurGroupe String,
+LibelleTypeDePersonnelValeurGroupe String,
+} entity CertificationDeLaPersonnePhysique{NomDeLaCertification String,
+OrganismeDeCertification String,
+DateDeValidation String,
+ModaliteDeValidation String,
+PaysDObtentionDeLaCertification String,
+} entity Competence{CodeCompetence String,
+LibelleCompetence String,
+NiveauDeCompetence String,
+} entity Diplme{DiplmeMajeur String,
+CodeDiplme String,
+LibelleDiplme String,
+Daobtd String,
+Ecole String,
+} entity NiveauDEtudes{CodeNiveauDEtudes String,
+} entity ExperiencesProfessionnellesAnterieures{DateDeDebutExperience String,
+DateDeFinExperience String,
+Employeur String,
+Metier String,
+ExperienceSignificative String,
+AncienneteBancaire String,
+} entity Langue{CodeLangue String,
+Libelle String,
+NiveauDeLangue String,
+} entity TestDeLangue{NomDuTest String,
+Score_Note String,
+}
